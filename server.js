@@ -26,6 +26,11 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 // Serve static files (your HTML, CSS, JS)
 app.use(express.static('.'));
 
+// Main route for frontend
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 // Handle missing images gracefully (return empty image)
 app.get(['/images/*', '/Images/*'], (req, res) => {
     // Return a 1x1 transparent gif for missing images
